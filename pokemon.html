@@ -17,27 +17,12 @@
     <!-- Google Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,200,0,0" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/global.css">    
+    <!-- CSS -->  
     <link rel="stylesheet" href="/assets/css/pokedex.css">
     <link rel="stylesheet" href="/assets/css/pokedex-stats.css">    
 </head>
 <body>
-
-    <section class="content">
-        <h1>Pokedex</h1>
-
-        <ol id="pokemonList" class="pokemons">
-        </ol>
-
-        <div class="pagination">
-            <button id="loadMore" type="button">
-                Load More
-            </button>
-        </div>
-    </section>
-
-    <!-- <section class="content-stats">
+    <section class="content-stats">
         <div class="pokemon-top">
             <span class="material-symbols-outlined">             arrow_back</span>
             <span class="material-symbols-outlined">favorite</span>
@@ -61,14 +46,17 @@
     </section>
 
     <div class="pokemon-stats">
-        <ul>
-            <li>About</li>
-            <li>Base Stats</li>
-            <li>Evolution</li>
-            <li>Moves</li>
-        </ul>
 
-        <div class="about">
+        <nav>
+            <ul>
+                <li class="active">About</li>
+                <li>Base Stats</li>
+                <li>Evolution</li>
+                <li>Moves</li>
+            </ul>
+        </nav>
+
+        <div>
             <table>
                 <tr>
                     <td class="item">Species</td>
@@ -78,9 +66,37 @@
                     <td class="item">Height</td>
                     <td class="description">2"3.6" (0.70 cm)</td>
                 </tr>
+                <tr>
+                    <td class="item">Weight</td>
+                    <td class="description">15.2lbs (6.9 kg)</td>
+                </tr>
+                <tr>
+                    <td class="item">Abilities</td>
+                    <td class="description">Overglow, Chlorophyl</td>
+                </tr>
+                <th>Breeding</th>
+                    <tr>
+                        <td class="item">Gender</td>
+                        <td class="description gender">
+                            <span class="material-symbols-outlined male">
+                                male
+                            </span> 87.5%
+                            <span class="material-symbols-outlined female">
+                                female
+                            </span> 12.5%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item">Egg Groups</td>
+                        <td class="description">Monster</td>
+                    </tr>
+                    <tr>
+                        <td class="item">Egg Cycle</td>
+                        <td class="description">Grass</td>
+                    </tr>
             </table>
         </div>
-    </div> -->
+    </div>
 
     <script src="/assets/js/pokemon-model.js"></script>
     <script src="/assets/js/poke-api.js"></script>
