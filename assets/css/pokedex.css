@@ -168,6 +168,10 @@
     background-color: #626eca;
 }
 
+a {
+    text-decoration: none;
+}
+
 @media screen and (min-width: 992px) { 
     .content {
         max-width: 992px;

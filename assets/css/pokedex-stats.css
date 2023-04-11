@@ -67,7 +67,7 @@
 .pokemon-stats {
     background-color: #FFF;
     margin-top: 2rem;
-    color: #3f3c3c;
+    color: #4e4d4d;
     border-radius: 50px;
 }
 
@@ -84,6 +84,11 @@ li {
     padding: 0.8rem 0;
     font-weight: bold;
     cursor: pointer;
+    color: #000;
+}
+
+li:hover {
+    border-bottom: 3px solid #BCC2E8;
 }
 
 .active {
@@ -99,9 +104,14 @@ table .item {
     width: 120px;
 }
 
+table .description {
+    color: #000;
+}
+
 table th {
     padding: 20px 0 10px 0;
     text-align: left;
+    color: #000;
 }
 
 table .gender {

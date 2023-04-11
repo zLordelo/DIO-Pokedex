@@ -5,18 +5,20 @@ let offset = 0;
 
 function pokemonToLi(pokemon) {
     return `
-    <li class="pokemon ${pokemon.type}" >
-        <span class="number">#${pokemon.number}</span>
-        <span class="name">${pokemon.name}</span>
-        
-        <div class="details">
-            <ol class="types">
-                ${pokemon.types.map((type) => `<li class="type">${type}</li>`).join('')}
-            </ol>
+    <a data-pokemon-name="${pokemon.name}" onclick="getPokemon(this)" href="#">
+        <li class="pokemon ${pokemon.type}" >
+            <span class="number">#${pokemon.number}</span>
+            <span class="name">${pokemon.name}</span>
+            
+            <div class="details">
+                <ol class="types">
+                    ${pokemon.types.map((type) => `<li class="type">${type}</li>`).join('')}
+                </ol>
 
-            <img src="${pokemon.photo}" alt="${pokemon.name}">
-        </div>
-    </li>
+                <img src="${pokemon.photo}" alt="${pokemon.name}">
+            </div>
+        </li>
+    </a>
     `
 }
 
