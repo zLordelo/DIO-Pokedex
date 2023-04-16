@@ -22,7 +22,7 @@
 }
 
 .electric {
-    background-color: #F7D02C;
+    background-color: #ddb92a;
     filter: brightness(1.05)
 }
 
@@ -138,7 +138,7 @@
 
 .pokemon .details .types .type {
     padding: .25rem .5rem;
-    margin: .25rem 0;
+    margin: .25rem .25rem .25rem 0;
     background-color: rgba(255, 255, 255, 0.15);
     color: #FFF;
     font-size: .625rem;

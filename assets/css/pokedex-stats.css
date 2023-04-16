@@ -7,7 +7,6 @@
     width: 100vw;
     height: 48vh;
     padding: 1rem;
-    background-color: #49D0B0;
     color: #FFF;
 }
 
@@ -22,11 +21,17 @@
     justify-items: center;
 }
 
+.pokemon-top a{
+    text-decoration: none;
+    color: #fff;
+}
+
 .pokemon-name {
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 1.250rem;
 }
 
 .pokemon-name span:first-child {
@@ -68,7 +73,7 @@
     background-color: #FFF;
     margin-top: 2rem;
     color: #4e4d4d;
-    border-radius: 50px;
+    border-radius: .5rem;
 }
 
 .pokemon-stats nav ul{
@@ -87,7 +92,7 @@ li {
     color: #000;
 }
 
-li:hover {
+.pokemon-stats li:hover {
     border-bottom: 3px solid #BCC2E8;
 }
 

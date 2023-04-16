@@ -5,7 +5,7 @@ let offset = 0;
 
 function pokemonToLi(pokemon) {
     return `
-    <a data-pokemon-name="${pokemon.name}" onclick="getPokemon(this)" href="#">
+    <a onclick="getPokemon(${pokemon.number})" href="#">
         <li class="pokemon ${pokemon.type}" >
             <span class="number">#${pokemon.number}</span>
             <span class="name">${pokemon.name}</span>

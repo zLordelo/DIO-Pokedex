@@ -1,29 +1,65 @@
 const pokemonPage = document.querySelector('#pokemonPage')
+const pokedex = document.querySelector('#pokedex')
+const pName = document.querySelector('#pName')
+const pNumber = document.querySelector('#pNumber')
 const api = 'https://pokeapi.co/api/v2/'
 
-async function getPokemonGenderRatio() {
-    const genderRatioFemale = await fetch(`${api}gender/1`)
-    const dataFemale = await genderRatioFemale.json()
+async function getPokemonsSpecies(id, info, gender) {
+    const response = await fetch(`${api}pokemon-species/${id}`)
+    
+    if (info == 'egg_groups') {
+        const data = await response.json().then(dataSpecie => dataSpecie.egg_groups.map(eggs => eggs.name).join(', '))
 
-    console.log(dataFemale)
-}
-
-async function getPokemonSpecie() {
-    const genderRatioFemale = await fetch(`${api}gender/1`)
-    const dataFemale = await genderRatioFemale.json()
-
-    console.log(dataFemale)
+        return `${data}`
+    } else if (info == 'specie'){
+        const data = await response.json().then(genera => genera.genera[7].genus)
+        return `${data}`.split(' ')[0]
+    } else {
+        const data = await response.json().then(gender => gender.gender_rate)
+        
+        if (gender == 'male') {
+            if (data == 1) {
+                return '87,5%'
+            } else if (data == 2) {
+                return '75,0%'
+            } else if (data == 3) {
+                return '50,0%'
+            } else if (data == 4) {
+                return '25,0%'
+            } else if (data == 5) {
+                return '0,0%'
+            } else if (data == 0) {
+                return '100,0%'
+            }
+        } else {
+            if (data == 1) {
+                return '12,5%'
+            } else if (data == 2) {
+                return '25,0%'
+            } else if (data == 3) {
+                return '50,0%'
+            } else if (data == 4) {
+                return '75,0%'
+            } else if (data == 5) {
+                return '100,0%'
+            } else if (data == 0) {
+                return '0,0%'
+            }
+        }
+    }
 }
 
 async function getPokemon(pokemon) {
-    const response = await fetch(`${api}pokemon/${pokemon.dataset.pokemonName}`)
+    const response = await fetch(`${api}pokemon/${pokemon}`)
     const data = await response.json()
-    
-    console.log(
-        `
-            <section class="content-stats" id="pokemonInfo">
+
+    if (!pokedex.hasAttribute('hidden')) {
+        pokedex.setAttribute('hidden', 'true')
+
+        pokemonPage.innerHTML = `
+            <section class="content-stats ${data.types[0].type.name}" id="pokemonInfo">
                 <div class="pokemon-top">
-                    <span class="material-symbols-outlined">arrow_back</span>
+                    <a href="index.html"><span class="material-symbols-outlined">arrow_back</span></a>
                     <span class="material-symbols-outlined">favorite</span>
                 </div>
 
@@ -34,7 +70,7 @@ async function getPokemon(pokemon) {
 
                 <div class="details">
                     <ol class="types">
-                    ${data.types.map((type) => `<li class="type">${JSON.stringify(type.type.name)}</li>`).join('')}
+                    ${data.types.map((type) => `<li class="type">${type.type.name}</li>`).join('')}
                     </ol>
                 </div>
 
@@ -57,7 +93,7 @@ async function getPokemon(pokemon) {
                     <table>
                         <tr>
                             <td class="item">Species</td>
-                            <td class="description">Seed</td>
+                            <td class="description">${await getPokemonsSpecies(data.id, 'specie')}</td>
                         </tr>
                         <tr>
                             <td class="item">Height</td>
@@ -69,7 +105,7 @@ async function getPokemon(pokemon) {
                         </tr>
                         <tr>
                             <td class="item">Abilities</td>
-                            <td class="description">${data.abilities.map((ability) => `${JSON.stringify(ability.ability.name)}`).join(', ')}</td>
+                            <td class="description">${data.abilities.map((ability) => ability.ability.name).join(', ')}</td>
                         </tr>
                         <th>Breeding</th>
                             <tr>
@@ -77,25 +113,19 @@ async function getPokemon(pokemon) {
                                 <td class="description gender">
                                     <span class="material-symbols-outlined male">
                                         male
-                                    </span> 87.5%
+                                    </span> ${await getPokemonsSpecies(data.id, ' ', 'male')}
                                     <span class="material-symbols-outlined female">
                                         female
-                                    </span> 12.5%
+                                    </span> ${await getPokemonsSpecies(data.id, ' ', 'female')}
                                 </td>
                             </tr>
                             <tr>
                                 <td class="item">Egg Groups</td>
-                                <td class="description">Monster</td>
-                            </tr>
-                            <tr>
-                                <td class="item">Egg Cycle</td>
-                                <td class="description">Grass</td>
+                                <td class="description">${await getPokemonsSpecies(data.id,   'egg_groups')}</td>
                             </tr>
                     </table>
                 </div>
             </div>
-        `
-
-    )
+            `
+    } 
 }
-
